@@ -15,17 +15,29 @@ public class Datum {
      * Constructor
      */
     public Datum(int dag, int maand, int jaar){
-        this.dag = dag;
-        this.maand = maand;
-        this.jaar = jaar; 
+        if(bestaatDatum(this.dag, this.maand, this.jaar)){
+            this.dag = dag;
+            this.maand = maand;
+            this.jaar = jaar; 
+
+        }
+        else {
+            dag = 0;
+            maand = 0;
+            jaar = 0;
+        }
     }
 
     public Datum(){
+        dag = 0;
+        maand = 0;
+        jaar = 0;
     }
+    
 
-    public boolean bestaatDatum(int day, int month, int year) {
+    public boolean bestaatDatum(int day, int month, int year) { 
         int maxdagen = 0;
-         
+
         switch(month){
             case 1: case 3: case 5: case 7: case 8: case 10: case 12:    
             maxdagen = 31;
@@ -43,7 +55,7 @@ public class Datum {
             case 4: case 6: case 9: case 11:
             maxdagen = 30; 
         }
-        System.out.print(maxdagen); 
+
         if(day < 1){
             return false;  
         }
@@ -67,7 +79,7 @@ public class Datum {
         }
     }
 
-    public boolean schrikkelJaar(int jaar){
+    public boolean schrikkelJaar(int jaar){  
         this.jaar = jaar;
         if((jaar % 4 == 0) && !(jaar % 100 == 0)){  
 
@@ -83,14 +95,13 @@ public class Datum {
         }
     }
 
-
     /**
      * Getter voor Sting weergave van datum
      *
      * @return Geboortedatum
      */
     public String getDatumAsString() {
-        // TODO
+        // to do
         return "";
     }
 
