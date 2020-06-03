@@ -10,7 +10,7 @@ import java.util.*;
 public class Persoon
 {
     private Dienblad dienblad; 
-    private Artikel artikel;
+    
 
     private int bsn;
     private String voornaam;

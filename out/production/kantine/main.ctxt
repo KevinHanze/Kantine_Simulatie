@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=main
+comment0.text=\r\n\ class\ main\ -\ geef\ hier\ een\ beschrijving\ van\ deze\ class\r\n\r\n\ @author\ (jouw\ naam)\r\n\ @version\ (versie\ nummer\ of\ datum)\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2

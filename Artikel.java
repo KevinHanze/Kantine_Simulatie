@@ -8,9 +8,9 @@
 public class Artikel
 {
     String naam;
-    int    prijs;
+    double prijs; 
 
-    public Artikel(String naam, int prijs){
+    public Artikel(String naam, double prijs){
         this.naam = naam;
         this.prijs = prijs; 
     }
@@ -22,8 +22,8 @@ public class Artikel
         return naam;    
     }
 
-    public int getPrijs(){
-        return prijs;    
+    public double getPrijs(){
+        return prijs;     
     }
 
     public void setNaam(String newNaam){

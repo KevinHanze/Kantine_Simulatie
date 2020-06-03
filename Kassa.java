@@ -26,9 +26,9 @@ public class Kassa {
      *
      * @param klant die moet afrekenen
      */
-    public void rekenAf(Persoon persoon) {
-        hoeveelheidGeldInKassa += totaalPrijsDienblad(persoon);  
-        aantalArtikelen += artikelenOpDienblad(persoon);  
+    public void rekenAf(Dienblad dienblad) {
+        hoeveelheidGeldInKassa += totaalPrijsDienblad(dienblad);   
+        aantalArtikelen += artikelenOpDienblad(dienblad);  
     }
 
     /**
@@ -62,14 +62,14 @@ public class Kassa {
         hoeveelheidGeldInKassa = 0; 
     }
 
-    public double totaalPrijsDienblad(Persoon persoon){
+    public double totaalPrijsDienblad(Dienblad dienblad){
         double prijs = 0.0; 
-        if(persoon.getDienblad().getIterator() == null){ 
+        if(dienblad.getIterator() == null){ 
             System.out.println("dit dienblad is leeg");
             return prijs;
         }
         else {
-            Iterator<Artikel> it = persoon.getDienblad().getIterator(); 
+            Iterator<Artikel> it = dienblad.getIterator(); 
             while(it.hasNext()){
                 prijs += it.next().getPrijs();  
             }
@@ -77,14 +77,14 @@ public class Kassa {
         }
     }
 
-    public int artikelenOpDienblad(Persoon persoon){
+    public int artikelenOpDienblad(Dienblad dienblad){
         int i = 0;
-        if(persoon.getDienblad().getIterator() == null){
+        if(dienblad.getIterator() == null){     
             System.out.println("dit dienblad is leeg");
             return i;
         }
         else {
-            Iterator<Artikel> it = persoon.getDienblad().getIterator();
+            Iterator<Artikel> it = dienblad.getIterator();
             while(it.hasNext()) {
                 it.next();
                 i++;

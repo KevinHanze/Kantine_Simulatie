@@ -1,13 +1,13 @@
 import java.util.ArrayList; 
 public class KassaRij {
     
-    private ArrayList<Persoon> rij; 
+    private ArrayList<Dienblad> rij; 
     /*
      * Constructor
      */
     public KassaRij() {
         
-        rij = new ArrayList<Persoon>(); 
+        rij = new ArrayList<Dienblad>(); 
     }
 
     /**
@@ -15,8 +15,8 @@ public class KassaRij {
      *
      * @param klant
      */
-    public void sluitAchteraan(Persoon persoon) {
-        rij.add(persoon); 
+    public void sluitAchteraan(Dienblad dienblad) {
+        rij.add(dienblad);  
     }
 
     /**
@@ -26,8 +26,8 @@ public class KassaRij {
      *
      * @return Eerste klant in de rij of null
      */
-    public Persoon eerstePersoonInRij() {
-        Persoon eersteklant = null;
+    public Dienblad eerstePersoonInRij() {
+        Dienblad eersteklant = null;
 
         if(rij == null || rij.isEmpty()){
             return eersteklant;
@@ -35,7 +35,7 @@ public class KassaRij {
 
         for(int i = 0; i < rij.size(); i++){
             if(rij.get(i) != null){
-                eersteklant = rij.get(i); 
+                eersteklant = rij.get(i);  
 
                 rij.remove(i); 
                 break; 
