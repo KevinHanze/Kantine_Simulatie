@@ -27,8 +27,23 @@ public class Kassa {
      * @param klant die moet afrekenen
      */
     public void rekenAf(Dienblad dienblad) {
-        hoeveelheidGeldInKassa += totaalPrijsDienblad(dienblad);   
-        aantalArtikelen += artikelenOpDienblad(dienblad);  
+        Persoon klant = dienblad.getKlant(); 
+        aantalArtikelen += artikelenOpDienblad(dienblad); 
+        Betaalwijze betaalwijze = klant.getBetaalwijze(); 
+        double teBetalen = totaalPrijsDienblad(dienblad); 
+        
+        if(klant instanceof KortingskaartHouder){
+            double korting = teBetalen * (((KortingskaartHouder)klant).geefKortingsPercentage() * 0.01); 
+            if(((KortingskaartHouder)klant).heeftMaximum()){
+                if(korting > ((KortingskaartHouder)klant).geefMaximum()){
+                    korting = ((KortingskaartHouder)klant).geefMaximum(); 
+
+                }
+            }
+            teBetalen -= korting; 
+        }
+        betaalwijze.betaal(teBetalen);    
+        hoeveelheidGeldInKassa += teBetalen;  
     }
 
     /**

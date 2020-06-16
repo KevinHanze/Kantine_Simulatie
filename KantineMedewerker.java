@@ -5,7 +5,7 @@
  * @author (jouw naam)
  * @version (09-06-2020)
  */
-public class KantineMedewerker extends Persoon
+public class KantineMedewerker extends Persoon implements  KortingskaartHouder 
 {
     // instance variables - vervang deze door jouw variabelen
     private String medewerkersNummer;
@@ -19,9 +19,9 @@ public class KantineMedewerker extends Persoon
         medewerkersNummer = nummer;
         kassaRechten = kassa; 
     }
-    
+
     public KantineMedewerker(){
-        
+
     }
 
     public String getMedewerkersNummer() {
@@ -40,4 +40,15 @@ public class KantineMedewerker extends Persoon
         this.kassaRechten = kassaRechten;
     }
 
+    public double geefKortingsPercentage(){
+        return 0.35;    
+    }
+
+    public boolean heeftMaximum(){
+        return false;    
+    }
+
+    public double geefMaximum(){
+        return 100000000.00; 
+    }
 }

@@ -10,7 +10,6 @@ import java.util.*;
 public class Persoon
 {
     private Dienblad dienblad; 
-    
 
     private int bsn;
     private String voornaam;
@@ -20,10 +19,9 @@ public class Persoon
     private int geboorteMaand;
     private int geboorteJaar;
     private char geslacht;
-
+    private Betaalwijze betaalwijze; 
     // Deze variabelen worden gebruikt voor een check.
 
-    boolean geldigeDag;
 
     public static void main(String[] args) {
     }
@@ -33,16 +31,17 @@ public class Persoon
      */
     public Persoon(int bsn, String voornaam, String achternaam, int geboorteDag, int geboorteMaand, int geboorteJaar, char geslacht)
     {
-     this.voornaam = voornaam;
-     this.achternaam = achternaam; 
-     this.geboorteDag = geboorteDag;
-     this.geboorteMaand = geboorteMaand;
-     this.geboorteJaar = geboorteJaar;
-     this.geslacht = geslacht;
+        this.voornaam = voornaam;
+        this.achternaam = achternaam; 
+        this.geboorteDag = geboorteDag;
+        this.geboorteMaand = geboorteMaand;
+        this.geboorteJaar = geboorteJaar;
+        this.geslacht = geslacht;
+
     }
-    
+
     public Persoon(){
-        
+
     }
 
     /**
@@ -74,7 +73,7 @@ public class Persoon
      * 
      */
     public void setGeboorteDatum (int newgeboortedag,int newgeboortemaand,int newgeboortejaar){
-        
+        boolean geldigeDag;
 
         int maxdagen = 0; 
         switch (newgeboortemaand){
@@ -106,19 +105,18 @@ public class Persoon
             geldigeDag = false;  
         }
 
-
         if(newgeboortemaand < 1 || newgeboortemaand > 12){
             geldigeDag = false; 
         }
-        
+
         if(newgeboortejaar < 1900 || newgeboortejaar > 2100){
             geldigeDag = false;
         }
-        
+
         if(geldigeDag){ 
-           geboorteDag = newgeboortedag;
-           geboorteMaand = newgeboortemaand;
-           geboorteJaar = newgeboortejaar; 
+            geboorteDag = newgeboortedag;
+            geboorteMaand = newgeboortemaand;
+            geboorteJaar = newgeboortejaar; 
         }
         else { 
             geboorteDag = 0;
@@ -126,7 +124,7 @@ public class Persoon
             geboorteJaar = 0;     
             System.out.println("dit is geen geldige geboortedatum"); 
         }
-    
+
     }
 
     /**
@@ -242,4 +240,16 @@ public class Persoon
         }
     }
 
+    public Betaalwijze getBetaalwijze(){
+        if(betaalwijze != null){
+            return betaalwijze;    
+        }
+        else {
+            return null;
+        }
+    }
+
+    public void setBetaalwijze(Betaalwijze newBetaalwijze){ 
+        betaalwijze = newBetaalwijze;    
+    }
 }

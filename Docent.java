@@ -5,7 +5,7 @@
  * @author (jouw naam)
  * @version (09-06-2020)
  */
-public class Docent extends Persoon
+public class Docent  extends Persoon implements KortingskaartHouder  
 {
     // instance variables - vervang deze door jouw variabelen
     private String afkorting;
@@ -37,5 +37,17 @@ public class Docent extends Persoon
 
     public void setAfdeling(String afdeling) {
         this.afdeling = afdeling;
+    }
+    
+    public double geefMaximum(){
+      return 1.00;   
+    }
+    
+    public boolean heeftMaximum(){
+     return true;   
+    }
+    
+    public double geefKortingsPercentage(){
+     return 0.25;    
     }
 }

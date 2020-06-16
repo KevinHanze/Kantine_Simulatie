@@ -51,6 +51,7 @@ public class KantineSimulatie {
             artikelnamen, artikelprijzen, hoeveelheden);
 
         kantine.setKantineAanbod(kantineaanbod);
+
     }
 
     /**
@@ -118,7 +119,7 @@ public class KantineSimulatie {
             int aantalStudenten = 0;
             int aantalDocenten = 0;
             int aantalMedewerkers = 0;
-            
+
             // laat de personen maar komen...
             for (int j = 0; j < aantalpersonen; j++) {
                 int randomValue = getRandomValue(0,100);
@@ -130,13 +131,13 @@ public class KantineSimulatie {
                     dienblad.setKlant(persoon);
                     aantalStudenten++; 
                 }
-                if (randomValue >= 90 && randomValue < 100){
+                else if(randomValue >= 90 && randomValue < 100){
                     persoon = new Docent();   
                     dienblad = new Dienblad();
                     dienblad.setKlant(persoon); 
                     aantalDocenten++;
                 }
-                if(randomValue == 100){
+                else{
                     persoon = new KantineMedewerker();   
                     dienblad = new Dienblad();
                     dienblad.setKlant(persoon); 
@@ -155,27 +156,36 @@ public class KantineSimulatie {
 
                 // loop de kantine binnen, pak de gewenste
                 // artikelen, sluit aan
-                kantine.loopPakSluitAan(dienblad, artikelen); 
+                kantine.loopPakSluitAan(dienblad, artikelen);
 
+                //betaalwijze bepalen en toewijzen aan de persoon
+                Betaalwijze betaalwijze;
+                String typeBetaalwijze;
+                int random = getRandomValue(1, 2);
+                if (random == 1) {
+                    persoon.setBetaalwijze(new Contant());
+                }
+                else{
+                 persoon.setBetaalwijze(new Pinpas());    
+                }
             }
             // verwerk rij voor de kassa
             kantine.verwerkRijVoorKassa();
             gemiddeldeWinst[i]= kantine.getKassa().hoeveelheidGeldInKassa();  
             gemiddeldeKlanten[i] = aantalpersonen; 
-            
+
             // druk de dagtotalen af en hoeveel personen binnen zijn gekomen
             System.out.println("---------------------------------");
             System.out.println("Er hebben vandaag " + aantalStudenten + " studenten, " + aantalDocenten + " docenten, en " + aantalMedewerkers + " mederwerker(s) besteld.");
-            System.out.println("Dag omzet: €" + kantine.getKassa().hoeveelheidGeldInKassa() + ",-"); 
+            System.out.println("Dag omzet: €" + Math.floor(kantine.getKassa().hoeveelheidGeldInKassa()*100)/100 + ",-"); 
             System.out.println("Dagtotaal artikelen: " + kantine.getKassa().aantalArtikelen()); 
-            
-            
+
             // reset de kassa voor de volgende dag
             kantine.getKassa().resetKassa();  
         }
         System.out.println(); 
-        System.out.println("De gemmidelde omzet per dag over " + dagen + " dagen = €" + administratie.berekenGemiddeldeOmzet(gemiddeldeWinst) + ",-");
-        System.out.println("Het gemiddelde aantal klanten per dag = " + administratie.berekenGemiddeldAantal(gemiddeldeKlanten)); 
+        System.out.println("De gemmidelde omzet per dag over " + dagen + " dagen = €" + Math.floor(administratie.berekenGemiddeldeOmzet(gemiddeldeWinst)*100)/100 + ",-");
+        System.out.println("Het gemiddelde aantal klanten per dag = " + Math.round(administratie.berekenGemiddeldAantal(gemiddeldeKlanten))); 
     }
 }
 
