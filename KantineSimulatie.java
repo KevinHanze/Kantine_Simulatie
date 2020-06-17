@@ -164,10 +164,13 @@ public class KantineSimulatie {
                 int random = getRandomValue(1, 2);
                 if (random == 1) {
                     persoon.setBetaalwijze(new Contant());
+                    persoon.getBetaalwijze().setSaldo(1200);
                 }
                 else{
                  persoon.setBetaalwijze(new Pinpas());    
+                persoon.getBetaalwijze().setSaldo(1200);
                 }
+                
             }
             // verwerk rij voor de kassa
             kantine.verwerkRijVoorKassa();
@@ -188,4 +191,3 @@ public class KantineSimulatie {
         System.out.println("Het gemiddelde aantal klanten per dag = " + Math.round(administratie.berekenGemiddeldAantal(gemiddeldeKlanten))); 
     }
 }
-

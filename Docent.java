@@ -48,6 +48,6 @@ public class Docent  extends Persoon implements KortingskaartHouder
     }
     
     public double geefKortingsPercentage(){
-     return 0.25;    
+     return 25;    
     }
 }

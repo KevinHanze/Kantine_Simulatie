@@ -1,4 +1,3 @@
-
 /**
  * class KantineMedewerker - geef hier een beschrijving van deze class
  *
@@ -41,7 +40,7 @@ public class KantineMedewerker extends Persoon implements  KortingskaartHouder
     }
 
     public double geefKortingsPercentage(){
-        return 0.35;    
+        return 35;    
     }
 
     public boolean heeftMaximum(){

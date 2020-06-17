@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=TeWeinigGeldException
+comment1.params=
+comment1.target=TeWeinigGeldException()
+comment2.params=e
+comment2.target=TeWeinigGeldException(java.lang.Exception)
+comment3.params=message
+comment3.target=TeWeinigGeldException(java.lang.String)
+numComments=4

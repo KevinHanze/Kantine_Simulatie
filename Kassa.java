@@ -25,13 +25,14 @@ public class Kassa {
      * later vervangen door een echte betaling door de persoon.
      *
      * @param klant die moet afrekenen
+     * @throws TeWeinigGeldException Als er te weinig geld is om te betalen.
      */
     public void rekenAf(Dienblad dienblad) {
         Persoon klant = dienblad.getKlant(); 
         aantalArtikelen += artikelenOpDienblad(dienblad); 
         Betaalwijze betaalwijze = klant.getBetaalwijze(); 
         double teBetalen = totaalPrijsDienblad(dienblad); 
-        
+
         if(klant instanceof KortingskaartHouder){
             double korting = teBetalen * (((KortingskaartHouder)klant).geefKortingsPercentage() * 0.01); 
             if(((KortingskaartHouder)klant).heeftMaximum()){
@@ -42,8 +43,17 @@ public class Kassa {
             }
             teBetalen -= korting; 
         }
-        betaalwijze.betaal(teBetalen);    
-        hoeveelheidGeldInKassa += teBetalen;  
+
+        try {
+            betaalwijze.betaal(teBetalen);
+
+            hoeveelheidGeldInKassa += teBetalen;
+        }
+        catch(TeWeinigGeldException e) {
+            System.out.println(klant.getVootnaam() + " " + klant.getAchternaam() +" kan de artikelen niet betalen.");
+            //dieblad + artikelen terug
+        }
+
     }
 
     /**
@@ -108,4 +118,3 @@ public class Kassa {
         }
     }
 }
-
